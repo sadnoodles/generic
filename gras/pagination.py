@@ -10,6 +10,7 @@ from rest_framework.pagination import (
 class PageNumberPagination(rest_framework.pagination.PageNumberPagination):
 
     page_size_query_param = 'size'
+    max_page_size = 100
     
     def get_next_link(self):
         if not self.page.has_next():
