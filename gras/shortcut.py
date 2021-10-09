@@ -19,9 +19,9 @@ def init_views(app_name):
 def init_urls(app_name, factory_views=None, version='v1'):
     factory_views = factory_views or init_views(app_name)
     urlpatterns = [        
-        url(r'^%s/(?P<model>[a-zA-Z]\w*)/$'%version,
+        url(r'^%s/(?P<model>[a-zA-Z]\w*)/?$'%version,
             factory_views, name='%s-api-%s-model-list'%(app_name, version)),
-        url(r'^%s/(?P<model>[a-zA-Z]\w*)/(?P<pk>\d+)/$'%version,
+        url(r'^%s/(?P<model>[a-zA-Z]\w*)/(?P<pk>\d+)/?$'%version,
             factory_views, name='%s-api-%s-model-detail'%(app_name, version)),        
     ]
     return urlpatterns

@@ -130,6 +130,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 DATETIME_FORMAT = '%Y-%m-%d %H:%M:%S'
 
+
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
@@ -140,11 +141,13 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
     ),
     'DEFAULT_PAGINATION_CLASS': (
-        'rest_framework.pagination.PageNumberPagination'
+        'gras.pagination.PageNumberPagination'
     ),
     'PAGE_SIZE': 18,
     'SEARCH_PARAM':'s',
     'DATETIME_FORMAT': DATETIME_FORMAT,
+    
 }
