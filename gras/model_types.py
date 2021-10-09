@@ -35,9 +35,11 @@ class TypeAttr:
         self.all_db_fields = []
         self.normal_fields = []
         self.foreign_keys = []
+        self.filter_fields = []
         self.mixins = []  
         if self.model:
             self.filter_id(self.model)
+        self.get_filter_fields()
 
     def filter_id(self, model):
         (
@@ -46,6 +48,18 @@ class TypeAttr:
             self.normal_fields,
             self.foreign_keys
         ) = filter_id(model)
+    
+    def get_filter_fields(self):
+        filter_fields = self.all_fields
+
+        if self.model.PreSetting.filter_include_fields:
+            filter_fields = [i for i in self.model.PreSetting.filter_include_fields  if i in self.all_fields]
+
+        if self.model.PreSetting.filter_exclude_fields:
+            filter_fields = [i for i in filter_fields if i not in self.model.PreSetting.filter_exclude_fields]
+
+        self.filter_fields = filter_fields
+        return self.filter_fields
 
     def exists(self):
         return (self.model is not None) and (self.serializer is not None)

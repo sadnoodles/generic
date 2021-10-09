@@ -73,9 +73,9 @@ def init_list_view(ta, mixins=None):
                 "queryset": ta.model.objects.all().order_by('-id'),
                 "permission_classes": (DjangoViewModelListPermissions, ),
                 "serializer_class": ta.serializer,
-                "filter_class": filter_factory(ta.model.__name__, ta.model, ta.all_fields),
+                "filter_class": filter_factory(ta.model.__name__, ta.model, ta.filter_fields),
                 "search_fields": ('=tags__name',),
-                "filter_fields": ta.all_fields
+                "filter_fields": ta.filter_fields
             }
         )
 

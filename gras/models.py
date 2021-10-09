@@ -34,6 +34,8 @@ class CommonAttrBase(models.Model):
         api_block_fields = [] 
         admin_readonly_fields = []
         automatic_fields = []
+        filter_include_fields = []
+        filter_exclude_fields = []
 
 class CommonAttr(DateMixin, CommonAttrBase):
     class Meta:
